@@ -1,8 +1,7 @@
 # License is MIT: LICENSE.md
 
-using StrAPI, CharSetEncodings
-@using_list StrAPI           api_ext api_def dev_ext dev_def
-@using_list CharSetEncodings api_ext api_def dev_def
+using APITools
+@api test StrAPI, CharSetEncodings
 
 @static V6_COMPAT ? (using Base.Test) : (using Test)
 

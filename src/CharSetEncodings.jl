@@ -7,19 +7,12 @@ Licensed under MIT License, see LICENSE.md
 """
 module CharSetEncodings
 
-using StrAPI
-@import_list StrAPI base_api_ext base_dev_ext
-@import_list StrAPI api_ext dev_ext
-@using_list  StrAPI api_def dev_def
+using APITools
+@api init
 
-const api_ext = Symbol[]
-const api_def = Symbol[]
-const dev_ext = Symbol[]
-const dev_def = Symbol[]
+@api extend StrAPI
 
 # Define symbols used for characters, codesets, codepoints
-
-push!(dev_def, :cse_info)
 
 const cse_info =
     ((:Binary,   UInt8),		# really, no character set at all, not text
@@ -38,9 +31,13 @@ const cse_info =
      (:UTF32,    UInt32),		# corresponding to codepoints (0-0xd7ff, 0xe000-0x10fff)
      (:_UTF32,   UInt32))		# Full validated UTF-32
 
+@api define_develop cse_info
+
 include("charsets.jl")
 include("encodings.jl")
 include("cses.jl")
 include("traits.jl")
+
+@api freeze
 
 end # module CharSetEncodings
