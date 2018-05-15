@@ -76,14 +76,15 @@ const Quad_CSEs     = Union{Text4CSE, UTF32CSE, _UTF32CSE}         # 32-bit code
 
 cse(::Type{<:AbstractString}) = RawUTF8CSE     # allows invalid sequences
 cse(::Type{<:SubString{T}}) where {T} = basecse(T)
-cse(str::AbstractString) = cse(typeof(str))
+cse(::T) where {T<:AbstractString} = cse(T)
 
 basecse(::Type{T}) where {T<:AbstractString} = basecse(cse(T))
+basecse(::T) where {T<:AbstractString} = basecse(cse(T))
 
 # Get charset based on CSE
 charset(::Type{<:CSE{CS}}) where {CS<:CharSet} = CS
 charset(::Type{T}) where {T<:AbstractString} = charset(cse(T))
-charset(str::AbstractString) = charset(cse(str))
+charset(::T) where {T<:AbstractString} = charset(cse(T))
 
 # Get encoding based on CSE
 encoding(::Type{<:CSE{CS,E}}) where {CS<:CharSet,E<:Encoding} = E
