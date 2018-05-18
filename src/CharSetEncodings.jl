@@ -8,7 +8,6 @@ Licensed under MIT License, see LICENSE.md
 module CharSetEncodings
 
 using APITools
-@api init
 
 @api extend StrAPI
 
