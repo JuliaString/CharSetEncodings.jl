@@ -3,8 +3,8 @@
 # Copyright 2017-2018 Gandalf Software, Inc., Scott P. Jones
 # Licensed under MIT License, see LICENSE.md
 
-@api define_public  CharSet
-@api define_develop charset_types
+@api public  CharSet, UniPlusCharSet
+@api develop charset_types
 
 struct CharSet{CS}   end
 
@@ -20,8 +20,6 @@ show(io::IO, ::Type{CharSet{S}}) where {S} = print(io, "CharSet{:", string(S), "
 const UniPlusCharSet = CharSet{:UniPlus}
 push!(charset_types, UniPlusCharSet)
 
-@api define_public UniPlusCharSet
-
 for lst in cse_info
     length(lst) > 2 && continue
     nam = lst[1]
@@ -29,7 +27,7 @@ for lst in cse_info
     @eval const $csnam = CharSet{$(quotesym(nam))}
     @eval show(io::IO, ::Type{$csnam}) = print(IO, $nam, "CharSet")
     @eval push!(charset_types, $csnam)
-    @eval @api $(String(nam)[1] == '_' ? :define_develop : :define_public) $csnam
+    @eval @api $(String(nam)[1] == '_' ? :develop : :public) $csnam
 end
 
 # Handle a few quirks

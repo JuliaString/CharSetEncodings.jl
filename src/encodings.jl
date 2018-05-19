@@ -6,8 +6,8 @@
 # Encodings inspired from collaboration with @nalimilan (Milan Bouchet-Valat) on
 # [StringEncodings](https://github.com/nalimilan/StringEncodings.jl)
 
-@api define_public  Encoding
-@api define_develop encoding_types
+@api public  Encoding, Native1Byte, UTF8Encoding
+@api develop encoding_types
 
 struct Encoding{Enc} end
 
@@ -18,8 +18,6 @@ Encoding(s) = Encoding{Symbol(s)}()
 
 const Native1Byte  = Encoding{:Byte}
 const UTF8Encoding = Encoding{:UTF8}
-
-@api define_develop Native1Byte, UTF8Encoding
 
 push!(encoding_types, Native1Byte, UTF8Encoding)
 
@@ -36,7 +34,7 @@ for (n, l, b, s) in (("2Byte", :LE2,     :BE2,     "16-bit"),
     @eval const $nat = $natnam
     @eval const $swp = $swpnam
     @eval push!(encoding_types, $natnam, $swpnam)
-    @eval @api define_public $natnam, $swpnam
+    @eval @api public $natnam, $swpnam
 end
 
 show(io::IO, ::Type{Encoding{S}}) where {S}  = print(io, "Encoding{:", string(S), "}")

@@ -30,7 +30,7 @@ const cse_info =
      (:UTF32,    UInt32),		# corresponding to codepoints (0-0xd7ff, 0xe000-0x10fff)
      (:_UTF32,   UInt32))		# Full validated UTF-32
 
-@api define_develop cse_info
+@api develop cse_info
 
 include("charsets.jl")
 include("encodings.jl")

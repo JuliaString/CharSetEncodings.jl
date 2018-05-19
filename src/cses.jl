@@ -3,12 +3,12 @@
 # Copyright 2017-2018 Gandalf Software, Inc., Scott P. Jones
 # Licensed under MIT License, see LICENSE.md
 
-@api define_public CSE
-@api define_develop cse_types
-@api public basecse
+@api public CSE
+@api develop cse_types
+@api public! basecse
 
 # Work around issue with parsing macro names
-@eval @api define_public $(Symbol("@cse"))
+@eval @api public $(Symbol("@cse"))
 
 struct CSE{CS, ENC}  end
 
@@ -51,9 +51,9 @@ for lst in cse_info
     @eval push!(cse_types, $cse)
     if String(nam)[1] == '_'
         @eval basecse(::Type{$cse}) = $(symstr(String(nam)[2:end], "CSE"))
-        @eval @api define_develop $cse
+        @eval @api develop $cse
     else
-        @eval @api define_public $cse
+        @eval @api public $cse
     end
 end
 
@@ -71,8 +71,8 @@ const Byte_CSEs     = Union{ASCIICSE, Binary_CSEs, Latin_CSEs, UTF8_CSEs} # 8-bi
 const Word_CSEs     = Union{Text2CSE, UCS2CSE, _UCS2CSE, UTF16CSE} # 16-bit code units
 const Quad_CSEs     = Union{Text4CSE, UTF32CSE, _UTF32CSE}         # 32-bit code units
 
-@api define_develop Binary_CSEs, Latin_CSEs, UTF8_CSEs, UCS2_CSEs, UTF32_CSEs, SubSet_CSEs,
-                    Byte_CSEs, Word_CSEs, Quad_CSEs
+@api develop Binary_CSEs, Latin_CSEs, UTF8_CSEs, UCS2_CSEs, UTF32_CSEs, SubSet_CSEs,
+             Byte_CSEs, Word_CSEs, Quad_CSEs
 
 cse(::Type{<:AbstractString}) = RawUTF8CSE     # allows invalid sequences
 cse(::Type{<:SubString{T}}) where {T} = basecse(T)
