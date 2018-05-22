@@ -7,7 +7,7 @@ Licensed under MIT License, see LICENSE.md
 """
 module CharSetEncodings
 
-using APITools
+using ModuleInterfaceTools
 
 @api extend StrAPI
 
