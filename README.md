@@ -1,10 +1,9 @@
 # CharSetEncodings
 
-[![Build Status](https://travis-ci.org/JuliaString/CharSetEncodings.jl.svg?branch=master)](https://travis-ci.org/JuliaString/CharSetEncodings.jl)
-
-[![Coverage Status](https://coveralls.io/repos/github/JuliaString/CharSetEncodings.jl/badge.svg?branch=master)](https://coveralls.io/github/JuliaString/CharSetEncodings.jl?branch=master)
-
-[![codecov.io](http://codecov.io/github/JuliaString/CharSetEncodings.jl/coverage.svg?branch=master)](http://codecov.io/github/JuliaString/CharSetEncodings.jl?branch=master)
+| **Package Status** | **Package Evaluator** | **Coverage**      |
+|:------------------:|:---------------------:|:-----------------:|
+| [![License](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](LICENSE.md) [![Build Status](https://travis-ci.org/JuliaString/CharSetEncodings.jl.svg?branch=master)](https://travis-ci.org/JuliaString/CharSetEncodings.jl) | [![CharSetEncodings](http://pkg.julialang.org/badges/CharSetEncodings_0.6.svg)](http://pkg.julialang.org/?pkg=CharSetEncodings) [![CharSetEncodings](http://pkg.julialang.org/badges/CharSetEncodings_0.7.svg)](http://pkg.julialang.org/?pkg=CharSetEncodings) | [![Coverage Status](https://coveralls.io/repos/github/JuliaString/CharSetEncodings.jl/badge.svg?branch=master)](https://coveralls.io/github/JuliaString/CharSetEncodings.jl?branch=master)
+[![codecov.io](http://codecov.io/github/JuliaString/CharSetEncodings.jl/coverage.svg?branch=master)](http://codecov.io/github/JuliaString/CharSetEncodings.jl?branch=master) |
 
 ## Architecture
 This provides the basic types and mode methods for dealing with character sets, encodings,
