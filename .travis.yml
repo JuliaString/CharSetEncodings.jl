@@ -27,7 +27,7 @@ git:
 
 ## uncomment the following lines to override the default test script
 script:
-  - julia -e 'f = VERSION < v"0.7.0-DEV" ; f || (using Pkg) ; const clone = ifelse(f, Pkg.clone, Pkg.add) ; d="https://github.com/JuliaString" ; clone("$d/ModuleInterfaceTools.jl") ; clone("$d/StrAPI.jl") ; clone(pwd()); Pkg.test("CharSetEncodings"; coverage=true)'
+  - julia -e 'VERSION < v"0.7.0-DEV" || (using Pkg) ;  < v"0.7.0-DEV.5183" ; Pkg.add("ModuleInterfaceTools") ; Pkg.add("StrAPI") ; Pkg.clone(pwd()); else ; Pkg.add(pwd()) ; end ; Pkg.test("CharSetEncodings"; coverage=true)'
 
 after_success:
   # push coverage results to Coveralls
