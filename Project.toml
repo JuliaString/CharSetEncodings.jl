@@ -1,0 +1,6 @@
+desc = "Types, Traits and support for Character Sets, Encodings, and CSEs (Character Set Encodings)"
+keywords = ["Strings", "Characters", "Character Sets", "Encodings"]
+license = "MIT"
+name = "CharSetEncodings"
+uuid = "4062c292-5f69-11e8-3000-9dbc0c8d08fb"
+repo = "https://github.com/JuliaString/CharSetEncodings.jl.git"
