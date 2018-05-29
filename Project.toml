@@ -5,7 +5,7 @@ name = "CharSetEncodings"
 repo-rev = ""
 repo-url = "https://github.com/JuliaString/CharSetEncodings.jl.git"
 uuid = "cb9422de-a9d8-5b68-86db-ff05833ab307"
-version = "0.1.0"
+version = "0.1.1"
 
 [deps]
 ModuleInterfaceTools = "5cb8414e-7aab-5a03-a681-351269c074bf"

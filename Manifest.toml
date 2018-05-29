@@ -1,8 +1,8 @@
 [[ModuleInterfaceTools]]
 deps = ["Pkg", "Test"]
-git-tree-sha1 = "55585fbfca81ec0e817b2e3fc54fcdcbf3d2a0af"
+repo-rev = ""
+repo-url = "https://github.com/JuliaString/ModuleInterfaceTools.jl"
 uuid = "5cb8414e-7aab-5a03-a681-351269c074bf"
-version = "0.1.0"
 
 [[Pkg]]
 uuid = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
@@ -12,9 +12,9 @@ uuid = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
 
 [[StrAPI]]
 deps = ["ModuleInterfaceTools", "Pkg", "Random"]
-git-tree-sha1 = "ee8eeb3b8a3bbff685c38c4815fb3b8b4c3538ee"
+repo-rev = ""
+repo-url = "https://github.com/JuliaString/StrAPI.jl"
 uuid = "69e7dfc3-c4d0-5e14-8d95-d6042a05b383"
-version = "0.1.0"
 
 [[Test]]
 uuid = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
