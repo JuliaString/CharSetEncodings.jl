@@ -27,10 +27,10 @@ matrix:
 
 ## uncomment the following lines to override the default test script
 script:
-  - julia -e 'VERSION < v"0.7.0-DEV" || (using Pkg) ; if VERSION < v"0.7.0-DEV.5183" ; Pkg.add("ModuleInterfaceTools") ; Pkg.add("StrAPI") ; Pkg.clone(pwd()); end ; Pkg.test("CharSetEncodings"; coverage=true)'
+  - julia -e 'if VERSION < v"0.7.0-DEV.5183" ; Pkg.add("ModuleInterfaceTools") ; Pkg.add("StrAPI") ; Pkg.clone(pwd()); else; Pkg.up(); end ; Pkg.test("CharSetEncodings"; coverage=true)'
 
 after_success:
   # push coverage results to Coveralls
-  - julia -e 'VERSION < v"0.7.0-DEV" || (using Pkg); cd(Pkg.dir("CharSetEncodings")); Pkg.add("Coverage"); using Coverage; Coveralls.submit(Coveralls.process_folder())'
+  - julia -e 'cd(Pkg.dir("CharSetEncodings")); Pkg.add("Coverage"); using Coverage; Coveralls.submit(Coveralls.process_folder())'
   # push coverage results to Codecov
-  - julia -e 'VERSION < v"0.7.0-DEV" || (using Pkg); cd(Pkg.dir("CharSetEncodings")); Pkg.add("Coverage"); using Coverage; Codecov.submit(Codecov.process_folder())'
+  - julia -e 'cd(Pkg.dir("CharSetEncodings")); Pkg.add("Coverage"); using Coverage; Codecov.submit(Codecov.process_folder())'

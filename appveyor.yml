@@ -46,7 +46,7 @@ build_script:
           Pkg.add(\"ModuleInterfaceTools\");
           Pkg.add(\"StrAPI\");
           Pkg.clone(pwd(), \"CharSetEncodings\");
-      end"
+      else; Pkg.up(); end"
 
 test_script:
-  - C:\projects\julia\bin\julia -e "VERSION < v\"0.7.0-DEV\" || (using Pkg); Pkg.test(\"CharSetEncodings\")"
+  - C:\projects\julia\bin\julia -e "Pkg.test(\"CharSetEncodings\")"
