@@ -3,12 +3,9 @@
 # Copyright 2017-2018 Gandalf Software, Inc., Scott P. Jones
 # Licensed under MIT License, see LICENSE.md
 
-@api public CSE
-@api develop cse_types
+@api public CSE, "@cse"
 @api public! basecse
-
-# Work around issue with parsing macro names
-@eval @api public $(Symbol("@cse"))
+@api develop cse_types
 
 struct CSE{CS, ENC}  end
 

@@ -9,7 +9,7 @@ module CharSetEncodings
 
 using ModuleInterfaceTools
 
-@api extend StrAPI
+@api extend! StrAPI
 
 # Define symbols used for characters, codesets, codepoints
 

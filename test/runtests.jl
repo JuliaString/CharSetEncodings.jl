@@ -2,9 +2,7 @@
 
 using ModuleInterfaceTools
 
-@static V6_COMPAT || (using Pkg)
-
-@api test StrAPI, CharSetEncodings
+@api test CharSetEncodings
 
 @testset "CharSet" begin
     for CS in charset_types
