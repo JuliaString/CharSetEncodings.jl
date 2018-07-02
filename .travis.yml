@@ -27,7 +27,7 @@ matrix:
 
 ## uncomment the following lines to override the default test script
 script:
-  - julia -e 'mit="ModuleInterfaceTools"; if VERSION < v"0.7.0-DEV.5183"; Pkg.clone("https://github.com/JuliaString/$mit.jl"); Pkg.checkout(mit, "master"); Pkg.clone(pwd()); Pkg.test("CharSetEncodings"; coverage=true); else; import Pkg; Pkg.up(); Pkg.test(; coverage=true); end'
+  - julia -e 'if VERSION < v"0.7.0-DEV.5183"; Pkg.clone(pwd()); else; import Pkg; Pkg.add(pwd()); end; Pkg.test("CharSetEncodings"; coverage=true)'
 
 after_success:
   # push coverage results to Coveralls
