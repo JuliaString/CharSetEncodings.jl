@@ -27,7 +27,7 @@ matrix:
 
 ## uncomment the following lines to override the default test script
 script:
-  - julia -e 'if VERSION < v"0.7.0-DEV.5183"; Pkg.clone("https://github.com/JuliaString/StrAPI.jl"); Pkg.clone(pwd()); else; import Pkg; Pkg.up(); end; Pkg.test("CharSetEncodings"; coverage=true)'
+  - julia -e 'st="https://github.com/JuliaString/StrAPI.jl"; if VERSION < v"0.7.0-DEV.5183"; Pkg.clone(st); Pkg.clone(pwd()); else; import Pkg; Pkg.add(st); Pkg.add(pwd()); end; Pkg.test("CharSetEncodings"; coverage=true)'
 
 after_success:
   # push coverage results to Coveralls
