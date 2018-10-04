@@ -3,10 +3,14 @@ uuid = "cb9422de-a9d8-5b68-86db-ff05833ab307"
 keywords = ["Strings", "Characters", "Character Sets", "Encodings"]
 license = "MIT"
 desc = "Types, Traits and support for Character Sets, Encodings, and CSEs (Character Set Encodings)"
-version = "0.1.8"
+version = "0.1.9"
 
 [deps]
-InteractiveUtils = "b77e0a4c-d291-57a0-90e8-8db25a27a240"
 ModuleInterfaceTools = "5cb8414e-7aab-5a03-a681-351269c074bf"
-Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 StrAPI = "69e7dfc3-c4d0-5e14-8d95-d6042a05b383"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
