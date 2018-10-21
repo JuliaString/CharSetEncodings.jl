@@ -25,7 +25,7 @@ for lst in cse_info
     nam = lst[1]
     csnam = symstr(nam, "CharSet")
     @eval const $csnam = CharSet{$(quotesym(nam))}
-    @eval show(io::IO, ::Type{$csnam}) = print(IO, string(csnam))
+    @eval show(io::IO, ::Type{$csnam}) = print(io, $(string(csnam)))
     @eval push!(charset_types, $csnam)
     @eval @api $(String(nam)[1] == '_' ? :develop : :public) $csnam
 end

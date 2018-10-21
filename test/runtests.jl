@@ -7,6 +7,8 @@ using ModuleInterfaceTools
 @testset "CharSet" begin
     for CS in charset_types
         @test CS <: CharSet
+        nam = sprint(show, CS)
+        @test endswith(nam, "CharSet") || startswith(nam, "CharSet{:")
     end
 end
 
@@ -21,5 +23,10 @@ end
         @test CS <: CSE
         @test charset(CS)  <: CharSet
         @test encoding(CS) <: Encoding
+    end
+end
+
+@testset "show charsets" begin
+    for CS in charset_types
     end
 end
