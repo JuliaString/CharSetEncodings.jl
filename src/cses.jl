@@ -27,6 +27,8 @@ show(io::IO, ::Type{CSE{CS,E}}) where {S,T,CS<:CharSet{S},E<:Encoding{T}} =
 print(io::IO, ::T) where {S,U,CS<:CharSet{S},E<:Encoding{U},T<:CSE{CS,E}} =
     (show(io, T); print(io, "()"))
 
+codeunit(::Type{String}) = UInt8
+
 # Definition of built-in CSEs (Character Set Encodings)
 
 codeunit(::Type{<:CSE}) = UInt8
