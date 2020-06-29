@@ -1,9 +1,12 @@
 # CharSetEncodings
 
-| **Info** | **Windows** | **Linux & MacOS** | **Package Evaluator** | **CodeCov** | **Coveralls** |
-|:------------------:|:------------------:|:---------------------:|:-----------------:|:---------------------:|:-----------------:|
-| [![][license-img]][license-url] | [![][app-s-img]][app-s-url] | [![][travis-s-img]][travis-url] | [![][pkg-s-img]][pkg-url] | [![][codecov-img]][codecov-url] | [![][coverall-s-img]][coverall-s-url]
-| [![][gitter-img]][gitter-url] | [![][app-m-img]][app-m-url] | [![][travis-m-img]][travis-url] | [![][pkg-m-img]][pkg-url] | [![][codecov-img]][codecov-url] | [![][coverall-m-img]][coverall-m-url]
+[pkg-url]: https://github.com/JuliaString/CharSetEncodings.jl.git
+
+[julia-url]:    https://github.com/JuliaLang/Julia
+[julia-release]:https://img.shields.io/github/release/JuliaLang/julia.svg
+
+[release]:      https://img.shields.io/github/release/JuliaString/CharSetEncodings.jl.svg
+[release-date]: https://img.shields.io/github/release-date/JuliaString/CharSetEncodings.jl.svg
 
 [license-img]:  http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat
 [license-url]:  LICENSE.md
@@ -15,22 +18,17 @@
 [travis-s-img]: https://travis-ci.org/JuliaString/CharSetEncodings.jl.svg
 [travis-m-img]: https://travis-ci.org/JuliaString/CharSetEncodings.jl.svg?branch=master
 
-[app-s-url]:    https://ci.appveyor.com/project/ScottPJones/charsetencodings-jl
-[app-m-url]:    https://ci.appveyor.com/project/ScottPJones/charsetencodings-jl/branch/master
-[app-s-img]:    https://ci.appveyor.com/api/projects/status/08ylxl46exltiemd?svg=true
-[app-m-img]:    https://ci.appveyor.com/api/projects/status/08ylxl46exltiemd/branch/master?svg=true
-
-[pkg-url]:      http://pkg.julialang.org/?pkg=CharSetEncodings
-[pkg-s-img]:    http://pkg.julialang.org/badges/CharSetEncodings_0.6.svg
-[pkg-m-img]:    http://pkg.julialang.org/badges/CharSetEncodings_0.7.svg
-
 [codecov-url]:  https://codecov.io/gh/JuliaString/CharSetEncodings.jl
 [codecov-img]:  https://codecov.io/gh/JuliaString/CharSetEncodings.jl/branch/master/graph/badge.svg
 
-[coverall-s-url]: https://coveralls.io/github/JuliaString/CharSetEncodings.jl
-[coverall-m-url]: https://coveralls.io/github/JuliaString/CharSetEncodings.jl?branch=master
-[coverall-s-img]: https://coveralls.io/repos/github/JuliaString/CharSetEncodings.jl/badge.svg
-[coverall-m-img]: https://coveralls.io/repos/github/JuliaString/CharSetEncodings.jl/badge.svg?branch=master
+[contrib]:    https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat
+
+[![][release]][pkg-url] [![][release-date]][pkg-url] [![][license-img]][license-url] [![contributions welcome][contrib]](https://github.com/JuliaString/CharSetEncodings.jl/issues)
+
+| **Julia Version** | **Unit Tests** | **Coverage** |
+|:------------------:|:------------------:|:---------------------:|
+| [![][julia-release]][julia-url] | [![][travis-s-img]][travis-url] | [![][codecov-img]][codecov-url]
+| Julia Latest | [![][travis-m-img]][travis-url] | [![][codecov-img]][codecov-url]
 
 ## Architecture
 This provides the basic types and mode methods for dealing with character sets, encodings,
