@@ -14,9 +14,7 @@
 [gitter-img]:   https://badges.gitter.im/Join%20Chat.svg
 [gitter-url]:   https://gitter.im/JuliaString/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge
 
-[travis-url]:   https://travis-ci.org/JuliaString/CharSetEncodings.jl
-[travis-s-img]: https://travis-ci.org/JuliaString/CharSetEncodings.jl.svg
-[travis-m-img]: https://travis-ci.org/JuliaString/CharSetEncodings.jl.svg?branch=master
+[checks]:       https://img.shields.io/github/checks-status/JuliaString/CharSetEncodings.jl/master
 
 [codecov-url]:  https://codecov.io/gh/JuliaString/CharSetEncodings.jl
 [codecov-img]:  https://codecov.io/gh/JuliaString/CharSetEncodings.jl/branch/master/graph/badge.svg
@@ -27,8 +25,8 @@
 
 | **Julia Version** | **Unit Tests** | **Coverage** |
 |:------------------:|:------------------:|:---------------------:|
-| [![][julia-release]][julia-url] | [![][travis-s-img]][travis-url] | [![][codecov-img]][codecov-url]
-| Julia Latest | [![][travis-m-img]][travis-url] | [![][codecov-img]][codecov-url]
+| [![][julia-release]][julia-url] | [![][]][] | [![][codecov-img]][codecov-url]
+| Julia Latest | [![][checks]][pkg-url] | [![][codecov-img]][codecov-url]
 
 ## Architecture
 This provides the basic types and mode methods for dealing with character sets, encodings,
