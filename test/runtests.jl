@@ -26,6 +26,15 @@ end
     end
 end
 
+@testset "CSE promotions" begin
+    for i = 1:length(cse_types), j = i+1:length(cse_types)
+        c1 = cse_types[i]
+        c2 = cse_types[j]
+        c1 == c2 && continue
+        @test promote_type(c1, c2) in cse_types
+    end
+end
+
 @testset "show charsets" begin
     for CS in charset_types
     end

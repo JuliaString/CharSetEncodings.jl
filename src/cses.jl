@@ -1,6 +1,6 @@
 # Character Set Encoding support
 #
-# Copyright 2017-2018 Gandalf Software, Inc., Scott P. Jones
+# Copyright 2017-2022 Gandalf Software, Inc., Scott P. Jones
 # Licensed under MIT License, see LICENSE.md
 
 @api public CSE, "@cse"
@@ -90,16 +90,94 @@ encoding(::Type{<:CSE{CS,E}}) where {CS<:CharSet,E<:Encoding} = E
 
 # Promotion rules for character set encodings
 
-promote_rule(::Type{Text2CSE}, ::Type{Text1CSE}) = Text2CSE
-promote_rule(::Type{Text4CSE}, ::Type{Text1CSE}) = Text4CSE
-promote_rule(::Type{Text4CSE}, ::Type{Text2CSE}) = Text4CSE
+promote_rule(::Type{C}, ::Type{BinaryCSE}) where {C<:CSE{<:CharSet, Encoding{:Byte}}} = BinaryCSE
+promote_rule(::Type{C}, ::Type{BinaryCSE}) where {C<:CSE{<:CharSet, Encoding{:Word}}} = Text2CSE
+promote_rule(::Type{C}, ::Type{BinaryCSE}) where {C<:CSE{<:CharSet, Encoding{:Quad}}} = Text4CSE
 
-promote_rule(::Type{T}, ::Type{ASCIICSE}) where {T<:CSE} = T
-promote_rule(::Type{T}, ::Type{<:Latin_CSEs}
-             ) where {T<:Union{UTF8CSE,UTF16CSE,UCS2_CSEs,UTF32_CSEs}} = T
+promote_rule(::Type{UTF8CSE}, ::Type{Text1CSE}) = RawUTF8CSE
+promote_rule(::Type{UTF8CSE}, ::Type{BinaryCSE}) = RawUTF8CSE
+promote_rule(::Type{RawUTF8CSE}, ::Type{Text1CSE}) = RawUTF8CSE
+promote_rule(::Type{RawUTF8CSE}, ::Type{BinaryCSE}) = RawUTF8CSE
+promote_rule(::Type{RawUTF8CSE}, ::Type{RawUTF16CSE}) = RawUTF8CSE
 
-promote_rule(::Type{T}, ::Type{_LatinCSE}) where {T<:Union{ASCIICSE,LatinCSE}} = LatinCSE
+promote_rule(::Type{<:Latin_CSEs}, ::Type{RawUTF8CSE}) = RawUTF8CSE
+promote_rule(::Type{<:UCS2_CSEs}, ::Type{RawUTF8CSE}) = RawUTF8CSE
+promote_rule(::Type{<:UTF32_CSEs}, ::Type{RawUTF8CSE}) = RawUTF8CSE
+promote_rule(::Type{UTF8CSE}, ::Type{RawUTF8CSE}) = RawUTF8CSE
+promote_rule(::Type{UTF16CSE}, ::Type{RawUTF8CSE}) = RawUTF8CSE
 
-promote_rule(::Type{T}, ::Type{_UCS2CSE}) where {T<:Union{ASCIICSE,Latin_CSEs,UCS2CSE}} = UCS2CSE
-promote_rule(::Type{T}, ::Type{_UTF32CSE}) where {T<:CSE} = UTF32CSE
-promote_rule(::Type{T}, ::Type{UTF32CSE}) where {T<:UCS2_CSEs} = UTF32CSE
+promote_rule(::Type{<:Latin_CSEs}, ::Type{RawUTF16CSE}) = RawUTF16CSE
+promote_rule(::Type{<:UCS2_CSEs}, ::Type{RawUTF16CSE}) = RawUTF16CSE
+promote_rule(::Type{<:UTF32_CSEs}, ::Type{RawUTF16CSE}) = RawUTF16CSE
+
+promote_rule(::Type{BinaryCSE}, ::Type{RawUTF16CSE}) = RawUTF16CSE
+promote_rule(::Type{Text1CSE}, ::Type{RawUTF16CSE}) = RawUTF16CSE
+promote_rule(::Type{Text2CSE}, ::Type{RawUTF16CSE}) = RawUTF16CSE
+promote_rule(::Type{Text4CSE}, ::Type{RawUTF16CSE}) = Text4CSE
+
+promote_rule(::Type{UTF8CSE}, ::Type{RawUTF16CSE}) = RawUTF16CSE
+promote_rule(::Type{UTF16CSE}, ::Type{RawUTF16CSE}) = RawUTF16CSE
+promote_rule(::Type{RawUTF16CSE}, ::Type{Text4CSE}) = Text4CSE
+
+promote_rule(::Type{Text2CSE}, ::Type{RawUTF8CSE}) = Text4CSE
+promote_rule(::Type{Text4CSE}, ::Type{RawUTF8CSE}) = Text4CSE
+
+promote_rule(::Type{UTF16CSE}, ::Type{BinaryCSE}) = Text4CSE
+promote_rule(::Type{<:UCS2_CSEs}, ::Type{BinaryCSE}) = Text2CSE
+promote_rule(::Type{<:UTF32_CSEs}, ::Type{BinaryCSE}) = Text4CSE
+
+promote_rule(::Type{C}, ::Type{Text1CSE}) where {C<:CSE{<:CharSet, Encoding{:Word}}} = Text2CSE
+promote_rule(::Type{C}, ::Type{Text1CSE}) where {C<:CSE{<:CharSet, Encoding{:Quad}}} = Text4CSE
+promote_rule(::Type{C}, ::Type{Text2CSE}) where {C<:CSE{<:CharSet, Encoding{:Byte}}} = Text2CSE
+promote_rule(::Type{C}, ::Type{Text2CSE}) where {C<:CSE{<:CharSet, Encoding{:Word}}} = Text2CSE
+promote_rule(::Type{C}, ::Type{Text2CSE}) where {C<:CSE{<:CharSet, Encoding{:Quad}}} = Text4CSE
+promote_rule(::Type{C}, ::Type{Text4CSE}) where {C<:CSE{<:CharSet, Encoding{:Byte}}} = Text4CSE
+promote_rule(::Type{C}, ::Type{Text4CSE}) where {C<:CSE{<:CharSet, Encoding{:Word}}} = Text4CSE
+promote_rule(::Type{C}, ::Type{Text4CSE}) where {C<:CSE{<:CharSet, Encoding{:Quad}}} = Text4CSE
+
+promote_rule(::Type{UTF8CSE}, ::Type{UCS2CSE}) = UTF8CSE
+promote_rule(::Type{UTF8CSE}, ::Type{_UCS2CSE}) = UTF8CSE
+promote_rule(::Type{UTF8CSE}, ::Type{UTF16CSE}) = UTF8CSE
+promote_rule(::Type{UTF8CSE}, ::Type{UTF32CSE}) = UTF8CSE
+promote_rule(::Type{UTF8CSE}, ::Type{_UTF32CSE}) = UTF8CSE
+
+# Unicode types with a Text1 or Text2 type need to convert characters to UTF32
+# and promote to Text4 type
+promote_rule(::Type{UTF8CSE}, ::Type{Text2CSE}) = Text4CSE
+promote_rule(::Type{UTF16CSE}, ::Type{Text1CSE}) = Text4CSE
+promote_rule(::Type{UTF16CSE}, ::Type{Text2CSE}) = Text4CSE
+
+promote_rule(::Type{<:UCS2_CSEs}, ::Type{Text1CSE}) = Text2CSE
+promote_rule(::Type{<:UCS2_CSEs}, ::Type{Text2CSE}) = Text2CSE
+promote_rule(::Type{<:UCS2_CSEs}, ::Type{Text4CSE}) = Text4CSE
+promote_rule(::Type{<:UTF32_CSEs}, ::Type{Text1CSE}) = Text4CSE
+promote_rule(::Type{<:UTF32_CSEs}, ::Type{Text2CSE}) = Text4CSE
+promote_rule(::Type{<:UTF32_CSEs}, ::Type{Text4CSE}) = Text4CSE
+
+promote_rule(::Type{Text2CSE}, ::Type{Text4CSE}) = Text4CSE
+promote_rule(::Type{UTF8CSE}, ::Type{Text4CSE}) = Text4CSE
+promote_rule(::Type{UTF16CSE}, ::Type{Text4CSE}) = Text4CSE
+
+promote_rule(::Type{C}, ::Type{ASCIICSE}) where {C<:CSE} = C
+
+promote_rule(::Type{C}, ::Type{LatinCSE}
+             ) where {C<:Union{Text1CSE,UTF8CSE,UTF16CSE,UCS2_CSEs,UTF32_CSEs}} = C
+promote_rule(::Type{C}, ::Type{_LatinCSE}
+             ) where {C<:Union{Text1CSE,UTF8CSE,UTF16CSE,UCS2_CSEs,UTF32_CSEs}} = C
+
+promote_rule(::Type{ASCIICSE}, ::Type{_LatinCSE}) = LatinCSE
+promote_rule(::Type{LatinCSE}, ::Type{_LatinCSE}) = LatinCSE
+
+promote_rule(::Type{UCS2CSE}, ::Type{_UCS2CSE})   = UCS2CSE
+
+promote_rule(::Type{UCS2CSE}, ::Type{UTF16CSE}) = UTF16CSE
+promote_rule(::Type{_UCS2CSE}, ::Type{UTF16CSE}) = UTF16CSE
+
+promote_rule(::Type{UCS2CSE}, ::Type{UTF32CSE}) = UTF32CSE
+promote_rule(::Type{_UCS2CSE}, ::Type{UTF32CSE}) = UTF32CSE
+promote_rule(::Type{UTF16CSE}, ::Type{UTF32CSE}) = UTF32CSE
+promote_rule(::Type{_UTF32CSE}, ::Type{UTF32CSE}) = UTF32CSE
+
+promote_rule(::Type{UCS2CSE}, ::Type{_UTF32CSE}) = _UTF32CSE
+promote_rule(::Type{_UCS2CSE}, ::Type{_UTF32CSE}) = _UTF32CSE
+promote_rule(::Type{UTF16CSE}, ::Type{_UTF32CSE}) = _UTF32CSE
